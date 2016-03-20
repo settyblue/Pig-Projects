@@ -17,12 +17,14 @@ customer_profile = load 'customer_profile' as (customer, zipcode);
 out = join customer_total by group, customer_profile by customer;
 dump out;
 
+/* original script.
 txns    = load 'transactions' as (customer, purchase);
 grouped = group txns by customer;
 total   = foreach grouped generate group, SUM(txns.purchase) as tp;
 -- Load the customer_profile file
 profile = load 'customer_profile' as (customer, zipcode);
-
+-- join the grouped and summed transactions and customer_profile data
 answer  = join total by group, profile by customer;
 -- Write the results to the screen
 dump answer;
+*/
